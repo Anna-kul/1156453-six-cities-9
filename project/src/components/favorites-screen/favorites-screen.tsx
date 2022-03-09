@@ -1,6 +1,10 @@
 import Logo from '../logo/logo';
+import { Offer } from '../../types/offer';
 
-function FavoritesScreen (): JSX.Element {
+type FavoritesScreenProps = {
+  offers: Offer[]
+}
+function FavoritesScreen ({offers}: FavoritesScreenProps): JSX.Element {
   return (
     <div className="page">
       <header className="header">

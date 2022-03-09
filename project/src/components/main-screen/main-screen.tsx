@@ -1,10 +1,20 @@
-import PlaceCard from '../place-card/place-card';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useState } from 'react';
+import ListOffers from '../list-offers/list-offers';
 import Logo from '../logo/logo';
+import { Offer } from '../../types/offer';
+
+
 type MainScreenProps = {
     availableOffersCount: number;
+    offers: Offer[];
 }
 
-function MainScreen ({availableOffersCount}: MainScreenProps): JSX.Element {
+
+function MainScreen ({availableOffersCount, offers}: MainScreenProps): JSX.Element {
+  const [selectedCardOffer, setSelectedCardOffer] = useState<Offer | null>(null);
+
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -91,13 +101,7 @@ function MainScreen ({availableOffersCount}: MainScreenProps): JSX.Element {
                   <li className="places__option" tabIndex={0}>Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
-                {PlaceCard()}
-                {PlaceCard()}
-                {PlaceCard()}
-                {PlaceCard()}
-                {PlaceCard()}
-              </div>
+              <ListOffers offers={offers} onPlaceCardHover={setSelectedCardOffer}/>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
